@@ -1,22 +1,21 @@
 package br.com.caelum.divida;
 
-import java.util.HashMap;
-
 public class BalancoEmpresa {
-    private HashMap<Cnpj, Divida> dividas = new HashMap<Cnpj, Divida>();
- 
-    public void registraDivida(String credor, Cnpj cnpjCredor, double valor) {
-        Divida divida = new Divida();
-        divida.setTotal(valor);
-        divida.setCredor(credor);
-        divida.setCnpjCredor(cnpjCredor);
-        dividas.put(cnpjCredor, divida);
+    private ArmazenadorDeDividas armazenadorDeDividas;
+
+    public BalancoEmpresa(ArmazenadorDeDividas dividas) {
+        this.armazenadorDeDividas = dividas;
+    }
+
+    public void registraDivida(Divida divida) {
+        armazenadorDeDividas.salva(divida);
     }
  
-    public void pagaDivida(Documento cnpjCredor, Pagamento pagamento) {
-        Divida divida = dividas.get(cnpjCredor);
+    public void pagaDivida(Documento documentoCredor, Pagamento pagamento) {
+        Divida divida = armazenadorDeDividas.carregar(documentoCredor);
         if (divida != null) {
             divida.registra(pagamento);
         }
+        armazenadorDeDividas.salva(divida);
     }
 }

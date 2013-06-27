@@ -3,11 +3,11 @@ package br.com.caelum.divida;
 public class Divida {
     private double total;
     private String credor;
-    private Documento cnpjCredor;
+    private Documento documentoCredor;
     private Pagamentos pagamentos = new Pagamentos();
  
-    public Documento getCnpjCredor() {
-        return this.cnpjCredor;
+    public Documento getDocumentoCredor() {
+        return this.documentoCredor;
     }
     public String getCredor() {
         return this.credor;
@@ -15,8 +15,8 @@ public class Divida {
     public double getTotal() {
         return this.total;
     }
-    public void setCnpjCredor(Documento cnpjCredor) {
-        this.cnpjCredor = cnpjCredor;
+    public void setDocumentoCredor(Documento documentoCredor) {
+        this.documentoCredor = documentoCredor;
     }
     public void setCredor(String credor) {
         this.credor = credor;
